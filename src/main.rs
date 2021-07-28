@@ -427,7 +427,7 @@ fn insert_workouts_test(
                         measure!(influx, insert_workouts_test, t(endpoint), t(status), i(took), tm(Utc::now().timestamp_nanos()));
 
                         if resp.status != 204 {
-                            eprintln!("***\nREQUEST:\n\n{}\n\nRESPONSE:\n\n{}\n\n***",
+                            eprintln!("***\nREQUEST:\n\n{}\n\nRESPONSE:\n\n{}",
                                 http_req_str,
                                 std::str::from_utf8(&buf[..n_bytes_read]).unwrap(),
                             );
