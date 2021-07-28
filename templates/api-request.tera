@@ -1,0 +1,8 @@
+POST {{path}} HTTP/1.1
+host: fitbod.jstrong.dev
+content-type: application/json
+content-length: {{ body | length }}
+x-fitbod-access-signature: {{ sig }}
+x-fitbod-access-timestamp: {{ timestamp }}
+
+{{ body }}

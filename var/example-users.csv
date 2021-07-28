@@ -1,6 +1,6 @@
-user_id,email,private_key,public_key
-a4738315-afda-42aa-b391-0319f36bcb49,user1@fitbod.me,o+au9hYSz/yAEDR2YtfAS76GY8VBsWnpj6PHc4q2qGQ=,Vxh28p/l+KtdCeUD5wd8Z6n+5HENH43cNCcmazrqUaGj5q72FhLP/IAQNHZi18BLvoZjxUGxaemPo8dziraoZA==
-e58479e6-39c7-48d7-96fd-a3aedb9330ca,user2@fitbod.me,r+7dIl+PRFiELmcCo3kHw9UGzzICasufDgW6rP4zey8=,PnJh+0zWzMUcpfgfCVTC8MPDVfVWoo9BznH2dLcj0tGv7t0iX49EWIQuZwKjeQfD1QbPMgJqy58OBbqs/jN7Lw==
-42092d20-f619-4515-9600-f4f956085ce1,user3@fitbod.me,k4E6LvhevTmPhB52wuRseP2yVnrTeZiy51MuHfl8BZI=,tHtGSvQBih/2DIJ9JuIx0A1jeI5u4pOqKlcRlH95zkaTgTou+F69OY+EHnbC5Gx4/bJWetN5mLLnUy4d+XwFkg==
-88cca042-92cd-437f-a988-2524c159ffd3,user5@fitbod.me,hHmCU3LOZV1vi1QYDJlg2yQIXbBVsoGBP+U+t488vTI=,5n3QClJ6nTDXhoTu3VRQjlH8L1o8nuGk9gVeKzTyk+iEeYJTcs5lXW+LVBgMmWDbJAhdsFWygYE/5T63jzy9Mg==
-df4aef34-999f-45b8-8d45-eebe999c8f3d,user6@fitbod.me,DQZHrhkdNvBxWtGUAvKUYZ21dADR2KBBIjf+WjLlGtI=,Z/63Bq1wDXPaSwQBy/1DaVqUKs8qF1gaBm7fGCydPTYNBkeuGR028HFa0ZQC8pRhnbV0ANHYoEEiN/5aMuUa0g==
+user_id,email,public_key,private_key
+183cdbba-3956-4c5f-9e14-2a0134dd2835,user1@fitbod.me,6Q/GRebuPFp6kwNqYqd/NIBkYPNeZ2Npyd7P19Qqme0=,tVEHupnMhjO7VribPX4frL7oS8s2YBdZ1oQ0DvYR3UXpD8ZF5u48WnqTA2pip380gGRg815nY2nJ3s/X1CqZ7Q==
+98c46554-d4ac-4a24-aa3f-d521666b0d88,user2@fitbod.me,+98BvMDEDOmbJfGx9KXj5ZGEAp9dxSktOElztPdK7nQ=,IQrXYSFSo4/ixk2/td+KOPnMvd27Fe5NTgORXiT5yQ/73wG8wMQM6Zsl8bH0pePlkYQCn13FKS04SXO090rudA==
+107b1afd-21aa-44e8-ac48-ff1a15c99675,user3@fitbod.me,h6mD44SqdKOChBIMOMFRrY9sSogbFC0jeYlUL3CHoW8=,FfBcpc4oRNxQMpZXAPY2SJHgFVKfT38+NwPtWUkQuCSHqYPjhKp0o4KEEgw4wVGtj2xKiBsULSN5iVQvcIehbw==
+7d9a4c15-eafd-4b7f-b734-f024c7adb2e1,user5@fitbod.me,BiVMif4/iV7zV19cso37bzs9m+eb76s5xvIUEIbCRMI=,iyS/tCJZRfrob8DDi17b5YQtJtNOniejwt/mCFmWdlwGJUyJ/j+JXvNXX1yyjftvOz2b55vvqznG8hQQhsJEwg==
+3680a82b-adab-4541-8cab-e603d010051d,user6@fitbod.me,0snCrA8m3D1cWfSAVNqJ2hha+sN4bqJvuol0nXW137g=,ntmmFEn8aFuRaxcBvMhFD0renL35OnHfCKDGeEbwI+zSycKsDybcPVxZ9IBU2onaGFr6w3huom+6iXSddbXfuA==
