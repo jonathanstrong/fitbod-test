@@ -2,3 +2,4 @@
 Cargo.lock
 *.swp
 .env
+var/random-users.csv

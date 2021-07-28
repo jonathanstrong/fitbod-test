@@ -23,5 +23,11 @@ dotenv = "0.15"
 tera = "1"
 hashbrown = "0.11"
 thhp = "0.2"
-#influx-writer = { git = "https://github.com/jonathanstrong/influx-writer" }
-influx-writer = { version = "0.19", registry = "mmcxi" }
+pretty_env_logger = "0.4"
+pretty_toa = "1"
+rayon = "1.5"
+num_cpus = "1.3"
+crossbeam-channel = "0.5"
+signal-hook = "0.1"
+influx-writer = { git = "https://github.com/jonathanstrong/influx-writer" }
+#influx-writer = { version = "0.19", registry = "mmcxi" }
