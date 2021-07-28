@@ -29,6 +29,7 @@ const API_REQUEST: &str = include_str!("../templates/api-request.tera");
 /// that is intended to be robust and reliable.
 ///
 #[derive(StructOpt)]
+#[structopt(author = env!("CARGO_PKG_AUTHORS"))]
 enum Opt {
     /// insert user.csv example data provided by fitbot to postgres. this does
     /// *not* load the data in workout.csv.
@@ -39,6 +40,20 @@ enum Opt {
         /// to user.csv emails
         #[structopt(short, long, default_value = "var/example-users.csv")]
         output_path: PathBuf,
+    },
+
+    /// take existing example-users.csv and save or overwrite users table with those rows
+    LoadExampleUsers {
+        #[structopt(short = "u", long, default_value = "var/example-users.csv")]
+        users_csv_path: PathBuf,
+
+        /// truncate users (cascading) table prior to inserting example-users.csv data
+        #[structopt(long)]
+        truncate_users: bool,
+
+        /// run vacuum full analyze after possibly truncating users
+        #[structopt(long)]
+        vacuum_full_analyze: bool,
     },
 
     /// inserts workout.csv example data provided by fitbot in random order, and checks
@@ -394,6 +409,36 @@ fn setup_example_users(input_path: &Path, output_path: &Path) {
 
 fn load_private_keys<P: AsRef<Path>>(input_path: P) -> Vec<UserPrivateEncoded> {
     load_csv(input_path)
+}
+
+fn load_example_users_to_db(users_csv_path: &Path, truncate_users: bool, vacuum_full_analyze: bool) {
+    let keys = load_private_keys(users_csv_path);
+    let users: Vec<fitbod::User> = keys.into_iter().map(|UserPrivateEncoded { user_id, email, public_key, .. }| {
+        let key: fitbod::auth::PublicKey = (&base64::decode(&public_key).unwrap()[..]).try_into().unwrap();
+        fitbod::User {
+            user_id,
+            email,
+            key,
+            created: Utc::now(),
+        }
+    }).collect();
+    dbg!(&users);
+    let db_url = std::env::var("DATABASE_URL").unwrap();
+    let rt  = Runtime::new().unwrap();
+    rt.block_on(async {
+        let db = fitbod::db::DataBase::new(&db_url).await.unwrap();
+        if truncate_users {
+            sqlx::query("truncate users cascade").execute(db.pool()).await.unwrap();
+            println!("truncated users table");
+        }
+        if vacuum_full_analyze {
+            sqlx::query("vacuum full analyze").execute(db.pool()).await.unwrap();
+            println!("performed vacuum full analyze");
+        }
+        db.insert_users(&users[..]).await.unwrap();
+        println!("inserted {} users", users.len());
+    });
+    println!("all done");
 }
 
 fn list_request(
@@ -982,11 +1027,15 @@ fn setup_random_users(output_path: &Path, n_users: usize, chunk_size: usize) {
 
 fn main() {
     dotenv::dotenv().unwrap();
-    pretty_env_logger::init();
     match Opt::from_args() {
         Opt::SetupExampleUsers { input_path, output_path } => {
             assert!(input_path.exists(), "path does not exist: {}", input_path.display());
             setup_example_users(&input_path, &output_path);
+        }
+
+        Opt::LoadExampleUsers { users_csv_path, truncate_users, vacuum_full_analyze } => {
+            assert!(users_csv_path.exists(), "path does not exist: {}", users_csv_path.display());
+            load_example_users_to_db(&users_csv_path, truncate_users, vacuum_full_analyze);
         }
 
         Opt::InsertWorkoutsTest { workouts_csv_path, users_csv_path, n_threads, connect } => {

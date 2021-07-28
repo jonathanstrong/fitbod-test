@@ -41,3 +41,6 @@ rebuild:
     just cargo clean
     just update
     just test
+
+show-users:
+    psql -d fitbod -c 'select * from users limit 50;'
